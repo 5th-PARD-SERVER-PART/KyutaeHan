@@ -5,29 +5,76 @@ import org.springframework.web.bind.annotation.*;
 //RestMethod
 @RestController
 public class hw1_3 {
-    @GetMapping("/get")
-    public String getUsers(){
-        return "Get Method Controller";
+    @GetMapping("/getUsers")
+    public String getUsers() {
+        return """
+               This is GET Method
+               Your Members are:
+               22100767 한규태
+               22200360 서경미
+               """;
     }
 
-    @PostMapping("")
+    @PostMapping("/post")
     public String postUser(){
         return "add user";
     }
 
-    @GetMapping("/{userId}")
-    public String getUser(@PathVariable Long userId){
-
-        return "userId : "+ userId;
+    @PutMapping("/put")
+    public String putUser(){
+        return "Edit the whole information of the user";
     }
 
-    @PatchMapping("/{userId}")
-    public String patchUser(@PathVariable Long userId){
-        return "patch user Id : " + userId;
+    //@RequestMapping(value = "/head", method = RequestMethod.HEAD)
+    @GetMapping("/head")
+    public String headUser() {
+        return "This is similar to the GET method, but it returns only the header information without the body.";
     }
 
-    @DeleteMapping("/{userId}")
+    @GetMapping("/options")
+    public String optionsUser(){
+        return """
+                <h1>Your available methods are:</h1>
+                <B>Get</B> : (url/getUsers)<br>
+                <B>Get</B> : (url/get/{userId})<br>
+                <B>Head</B> : (url/head)<br>
+                <B>Post</B> : (url/post)<br>
+                <B>Put</B> : (url/put)<br>
+                <B>Patch</B> : (url/patch/{userId})<br>
+                <B>Delete</B> : (url/delete/{userId})<br>
+                <B>Options</B> : (url/options)
+                """;
+    }
+
+
+    @GetMapping("/get/{userId}")
+    public String getUser(@PathVariable Integer userId){
+        if(userId.equals(22100767)){
+            return "userId : "+ userId + " 한규태 학생입니다.";
+        }
+        else if(userId.equals(22200360)){
+            return "userId : "+userId+ " 서경미 학생입니다.";
+        }
+        else{
+            return "No such user, try 22100767 or 22200360";
+        }
+
+    }
+
+    @PatchMapping("/patch/{userId}")
+    public String patchUser(@PathVariable Integer userId){
+        if(userId.equals(22100767)||userId.equals(22200360) ) {
+            return "patch user Id : " + userId;
+        }
+        else {
+            return "No such user, try 22100767 or 22200360";
+        }
+    }
+
+    @DeleteMapping("/delete/{userId}")
     public String deleteUser(@PathVariable Long userId){
         return "Delete UserId : " + userId;
     }
+
+
 }

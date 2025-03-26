@@ -14,21 +14,25 @@ public class hw1_2 {
 
     @RequestMapping("/RequestParameter")
     public String Request(
-            @RequestParam(required = true, defaultValue = "no name") String name,
-            @RequestParam(required = true, defaultValue = "-1") Integer age,
-            HttpServletRequest request) {
+            @RequestParam(required = false, defaultValue = "no name") String name,
+            @RequestParam(required = false, defaultValue = "-1") Integer age
+    )  {
+        StringBuilder errorMessage = new StringBuilder();
 
-        // 1. 잘못된 쿼리 형식 감지
-        // 예: /RequestParameter?kyutae,23 처럼 key=value 형태가 아닌 경우
-        String queryString = request.getQueryString();
-        if (queryString != null && !queryString.contains("=")) {
-            return "❌ Please give us the right parameter! Use ?name=xxx&age=yyy";
+        if (name.equals("no name")) {
+            errorMessage.append("올바른 형식으로 name을 입력해주세요. 예: ?name=kyutaehan<br>");
         }
 
-        // 2. age가 숫자가 아닌 이상한 값이면 NumberFormatException이 발생해서 400 에러가 나는데
-        //    이건 위에서 defaultValue = "-1"을 줬기 때문에 안전함!
+        if (age == -1) {
+            errorMessage.append("올바른 형식으로 age를 입력해주세요. 예: ?age=24<br>");
+        }
 
-        return "✅ RequestParam: 이름 = " + name + ", 나이 = " + age;
+        if (!errorMessage.isEmpty()) {
+            return errorMessage.toString();
+        }
+
+        return "RequestParam: 이름 = " + name + ", 나이 = " + age;
     }
+
 
 }

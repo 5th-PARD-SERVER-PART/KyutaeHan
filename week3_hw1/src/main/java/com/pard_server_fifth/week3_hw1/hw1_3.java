@@ -34,15 +34,15 @@ public class hw1_3 {
     @GetMapping("/options")
     public String optionsUser(){
         return """
-                <h1>Your available methods are:</h1>
-                <B>Get</B> : (url/getUsers)<br>
-                <B>Get</B> : (url/get/{userId})<br>
-                <B>Head</B> : (url/head)<br>
-                <B>Post</B> : (url/post)<br>
-                <B>Put</B> : (url/put)<br>
-                <B>Patch</B> : (url/patch/{userId})<br>
-                <B>Delete</B> : (url/delete/{userId})<br>
-                <B>Options</B> : (url/options)
+                Your available methods are:
+                Get : (url/getUsers)
+                Get : (url/get/{userId})
+                Head : (url/head)
+                Post : (url/post)
+                Put : (url/put)
+                Patch : (url/patch/{userId})
+                Delete : (url/delete/{userId})
+                Options : (url/options)
                 """;
     }
 

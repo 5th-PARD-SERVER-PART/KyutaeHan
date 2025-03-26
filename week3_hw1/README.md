@@ -21,7 +21,7 @@
 ---
 
 ## 📄 hw1_2.java
-![img_5.png](img/img_5.png)![img_4.png](img/img_4.png)
+![img_5.png](img/img_5.png)
 - **기능:** Request Parameter 방식으로 `name`, `age`를 입력받음
 - **컨트롤러:** `@RestController`
 - **예시 URL:**

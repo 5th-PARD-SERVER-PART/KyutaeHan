@@ -5,31 +5,31 @@ controller (hw4)
 
 
 ## hw1.java file
-![img.png](img.png)
+![img.png](img/img.png)
 path variable을 사용하여서 이름과 학번을 입력 받는 동작
 RestController를 사용하여서 경로를 입력하는 url 창에서 동적으로 받아들일 수 있도록 함
 
 출력예시
 url 입력창: `http://localhost:8081/path/kyutae/22100767`
-![img_1.png](img_1.png)
+![img_1.png](img/img_1.png)
 
 ---
 
 ## hw1_2.java file
-![img_5.png](img_5.png)![img_4.png](img_4.png)
+![img_5.png](img/img_5.png)![img_4.png](img/img_4.png)
 Request parameter 형식으로 변수를 받아들이도록 함
 
 출력예시
 url 입력창 : `http://localhost:8081/RequestParameter`
-![img_6.png](img_6.png)
+![img_6.png](img/img_6.png)
 파라미터가 없는 경우 오류 메세지를 출력하도록 함
 
 url 입력창 : `http://localhost:8081/RequestParameter?name=kyutae`
-![img_7.png](img_7.png)
+![img_7.png](img/img_7.png)
 하나만 입력한 경우 또다른 파라미터 값을 요구함
 
 url 입력창 : `http://localhost:8081/RequestParameter?name=kyutae&age=24`
-![img_8.png](img_8.png)
+![img_8.png](img/img_8.png)
 모든 파라미터를 입력한 경우에만 입력한 값 리턴
 
 ---
@@ -112,32 +112,32 @@ Request Method를 구현하였으며 head와 options method는 get 방식으로 
 
 출력예시
 1)
-![img_9.png](img_9.png)
-![img_10.png](img_10.png)
+![img_9.png](img/img_9.png)
+![img_10.png](img/img_10.png)
 
 2)
-![img_11.png](img_11.png)
-![img_12.png](img_12.png)
+![img_11.png](img/img_11.png)
+![img_12.png](img/img_12.png)
 
-![img_13.png](img_13.png)
-![img_14.png](img_14.png)
+![img_13.png](img/img_13.png)
+![img_14.png](img/img_14.png)
 
 ---
 ## hw1_4.java file
-![img_15.png](img_15.png)
+![img_15.png](img/img_15.png)
 /studentList 라는 경로로 url을 입력하게 되면 studentList.html을 실행하도록 동작
 
 출력예시
 url 입력창 : `http://localhost:8081/studentList`
-![img_16.png](img_16.png)
+![img_16.png](img/img_16.png)
 
 ---
 
 ## hw1_5.java file
-![img_17.png](img_17.png)
+![img_17.png](img/img_17.png)
 Rest controller
 정적인 파일을 불러오는 것이 아닌 경로 자체로 연결을 했을 때에 동작을 수행
 
 출력예시
 url 입력창 : `http://localhost:8081/hiStudent`
-![img_18.png](img_18.png)
+![img_18.png](img/img_18.png)

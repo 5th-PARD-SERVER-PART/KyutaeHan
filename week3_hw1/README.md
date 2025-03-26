@@ -16,7 +16,7 @@
   ```
 
 - **출력 화면:**
-  ![img_1.png](img_1.png)
+  ![img_1.png](img/img_1.png)
 
 ---
 
@@ -36,13 +36,13 @@
     ```
     http://localhost:8081/RequestParameter?name=kyutae
     ```
-    ![img_7.png](img_7.png)
+    ![img_7.png](img/img_7.png)
 
   - 모든 파라미터 입력  
     ```
     http://localhost:8081/RequestParameter?name=kyutae&age=24
     ```
-    ![img_8.png](img_8.png)
+    ![img_8.png](img/img_8.png)
 
 ---
 
@@ -102,14 +102,14 @@ public class hw1_3 {
 
 - **예시 출력:**
   1. GET 요청  
-     ![img_9.png](img_9.png)  
-     ![img_10.png](img_10.png)
+     ![img_9.png](img/img_9.png)  
+     ![img_10.png](img/img_10.png)
 
   2. PATCH, DELETE 등  
-     ![img_11.png](img_11.png)  
-     ![img_12.png](img_12.png)  
-     ![img_13.png](img_13.png)  
-     ![img_14.png](img_14.png)
+     ![img_11.png](img/img_11.png)  
+     ![img_12.png](img/img_12.png)  
+     ![img_13.png](img/img_13.png)  
+     ![img_14.png](img/img_14.png)
 
 ---
 
@@ -122,7 +122,7 @@ public class hw1_3 {
   http://localhost:8081/studentList
   ```
 - **출력 화면:**  
-  ![img_16.png](img_16.png)
+  ![img_16.png](img/img_16.png)
 
 ---
 
@@ -136,5 +136,5 @@ public class hw1_3 {
   ```
 
 - **출력 화면:**  
-  ![img_18.png](img_18.png)
+  ![img_18.png](img/img_18.png)
 

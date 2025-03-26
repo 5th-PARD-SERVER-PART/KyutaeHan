@@ -30,7 +30,7 @@
     ```
     http://localhost:8081/RequestParameter
     ```
-    ![img_6.png](img_6.png)
+    ![img_6.png](img/img_6.png)
 
   - name만 입력  
     ```

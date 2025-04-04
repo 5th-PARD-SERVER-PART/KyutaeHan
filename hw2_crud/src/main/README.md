@@ -11,10 +11,9 @@
 ![img_2.png](resources/img/img_2.png)
 
 - patch
-![img_3.png](resources/img/img_3.png)
 ![img_4.png](resources/img/img_4.png)
 
--patch 결과 확인
+- patch 결과 확인
 ![img_5.png](resources/img/img_5.png)
 
 - delete (1)

@@ -4,7 +4,7 @@
 - get
 ![img.png](resources/img/img.png)
 
--get2
+- get2
 ![img_1.png](resources/img/img_1.png)
 
 - post

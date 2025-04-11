@@ -39,8 +39,8 @@ public class LaptopService {
 
     }
 
-    public List<LaptopDto> findReleasedDateEqualToYear(int year){
-        List<Laptop> laptops = laptopRepository.findReleasedDateEqualToYear(year);
+    public List<LaptopDto> findByReleasedYear(int year){
+        List<Laptop> laptops = laptopRepository.findByReleasedYear(year);
         List<LaptopDto> laptopDtos = laptops.stream().map(laptop ->
                 LaptopDto.builder()
                         .laptopName(laptop.getLaptopName())

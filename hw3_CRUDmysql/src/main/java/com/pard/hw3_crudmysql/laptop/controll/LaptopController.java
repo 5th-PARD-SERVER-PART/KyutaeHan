@@ -31,8 +31,8 @@ public class LaptopController {
     }
 
     @GetMapping("/releasedYear")
-    public List<LaptopDto> readByReleaseDateEqualToYear(@RequestParam int year){
-        return laptopService.findReleasedDateEqualToYear(year);
+    public List<LaptopDto> readByReleaseoYear(@RequestParam int releasedYear){
+        return laptopService.findByReleasedYear(releasedYear);
     }
 
     @GetMapping("/{companyName}")

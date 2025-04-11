@@ -57,7 +57,7 @@ spring:
 3. password
 
 - yaml 파일을 수정하였음로 gradle 새로고침(동기화)해주기
-![img_6.png](img_6.png)
+- ![img_6.png](img_6.png)
 
 - mysql 불러오기
 ![img_7.png](img_7.png)

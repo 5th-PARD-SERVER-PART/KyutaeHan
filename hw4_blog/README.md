@@ -79,7 +79,7 @@ POST /user → Try it out 클릭
 }
 ```
 
-<p><img src="images/img_3.png" width="500"></p>
+<p><img src="images/img_3.png" width="700"></p>
 결과 확인 (GET /user)
 
 <p><img src="images/img_4.png" width="700"></p>
@@ -89,10 +89,11 @@ POST /user → Try it out 클릭
 2. 같은 유저가 블로그 글을 추가하면?
 POST /blog를 이용해서 블로그 글을 추가해보자
 
-<p><img src="images/img_5.png" width="600"></p>
+<p><img src="images/img_5.png" width="700"></p>
 결과는 이렇게 나옴
 
-<p> <img src="images/img_6.png" width="300"> <img src="images/img_7.png" width="300"> </p>
+<p> <img src="images/img_6.png" width="700"> 
+<img src="images/img_7.png" width="700"> </p>
 
 ---
 
@@ -101,28 +102,29 @@ PUT /blog/{id}에서 파라미터에 blog ID 입력
 
 JSON으로 수정할 내용 넣기
 
-<p><img src="images/img_8.png" width="500"></p>
+<p><img src="images/img_8.png" width="700"></p>
 결과 (GET /user/{id})
 
-<p> <img src="images/img_9.png" width="300"> <img src="images/img_10.png" width="300"> </p>
+<p> <img src="images/img_9.png" width="700"> 
+<img src="images/img_10.png" width="700"> </p>
 
 ---
 
 4. 글 삭제는?
-<p><img src="images/img_11.png" width="500"></p>
+<p><img src="images/img_11.png" width="700"></p>
 블로그 글을 지우고 나면 이렇게 정리된다
-<p><img src="images/img_12.png" width="600"></p>
+<p><img src="images/img_12.png" width="700"></p>
 
 ---
 
 5. 유저를 삭제하면?
-<p><img src="images/img_13.png" width="300"></p>
+<p><img src="images/img_13.png" width="700"></p>
 결과는 이렇게 된다…
 
-<p align="center"><img src="images/img_14.png" width="300"></p>
+<p align="center"><img src="images/img_14.png" width="700"></p>
 규태 유저가 사라지면서 그 유저가 쓴 블로그 글들도 전부 삭제됨
 
-<p><img src="images/img_15.png" width="600"></p>
+<p><img src="images/img_15.png" width="700"></p>
 
 ---
 

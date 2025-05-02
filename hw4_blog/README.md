@@ -121,7 +121,7 @@ JSON으로 수정할 내용 넣기
 <p><img src="images/img_13.png" width="700"></p>
 결과는 이렇게 된다…
 
-<p align="center"><img src="images/img_14.png" width="700"></p>
+<p align="center"><img src="images/img_14.png" width="300"></p>
 규태 유저가 사라지면서 그 유저가 쓴 블로그 글들도 전부 삭제됨
 
 <p><img src="images/img_15.png" width="700"></p>

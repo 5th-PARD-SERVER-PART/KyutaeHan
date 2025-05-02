@@ -24,12 +24,13 @@ public class BlogController {
         return blogService.findByWriter(userId);
     }
 
-    @PutMapping("/{blogId}")
-    public void updateBlog(@PathVariable Long blogId,
-                           @RequestParam Long userId,
-                           @RequestBody BlogRequest.BlogUpdateRequest req) {
+    @PatchMapping("/{blogId}")
+    public void patchBlog(@PathVariable Long blogId,
+                          @RequestParam Long userId,
+                          @RequestBody BlogRequest.BlogUpdateRequest req) {
         blogService.updateBlog(blogId, req, userId);
     }
+
 
     @DeleteMapping("/{blogId}")
     public void deleteBlog(@PathVariable Long blogId,

@@ -10,6 +10,7 @@ import com.pard.server.hw4_blog.user.entity.User;
 import com.pard.server.hw4_blog.user.repo.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -31,6 +32,7 @@ public class BlogService {
         return BlogMapper.toDtoList(blogRepo.findAllByUserId(userId));
     }
 
+    @Transactional
     public void updateBlog(Long blogId, BlogRequest.BlogUpdateRequest req, Long userId) {
         Blog blog = blogRepo.findById(blogId)
                 .orElseThrow(() -> new RuntimeException("블로그 없음"));
@@ -38,6 +40,10 @@ public class BlogService {
             throw new RuntimeException("작성자만 수정 가능");
         }
         blog.updateFilename(req.getFilename());
+
+        if (req.getFilename() != null) {
+            blog.updateFilename(req.getFilename());
+        }
     }
 
     public void deleteBlog(Long blogId, Long userId) {

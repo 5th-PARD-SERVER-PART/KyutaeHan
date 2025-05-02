@@ -7,25 +7,28 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-
 @Entity
+@Table(name = "likes", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"user_id", "blog_id"})
+})
 @Getter
-@AllArgsConstructor
 @NoArgsConstructor
-
+@AllArgsConstructor
 public class Likes {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name= "user_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @ManyToOne
-    @JoinColumn(name= "blog_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "blog_id", nullable = false)
     private Blog blog;
 
+    public static Likes of(User user, Blog blog) {
+        return new Likes(null, user, blog);
+    }
 }
-

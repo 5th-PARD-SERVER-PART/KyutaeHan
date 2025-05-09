@@ -9,7 +9,13 @@ import java.util.stream.Collectors;
 
 public class BlogMapper {
     public static BlogResponse.BlogReadResponse toDto(Blog blog) {
-        return new BlogResponse.BlogReadResponse(blog.getId(), blog.getFilename());
+        return BlogResponse.BlogReadResponse.builder()
+                .id(blog.getId())
+                .filename(blog.getFilename())
+                .writerName(blog.getUser().getName())
+                .writerId(blog.getUser().getId())
+                .likeCount((long) blog.getLikes().size())
+                .build();
     }
 
     public static List<BlogResponse.BlogReadResponse> toDtoList(List<Blog> blogs) {

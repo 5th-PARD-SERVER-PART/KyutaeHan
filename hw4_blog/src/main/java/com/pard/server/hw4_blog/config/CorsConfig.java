@@ -1,4 +1,4 @@
-package com.pard.server.seminar5.common.config;
+package com.pard.server.hw4_blog.config;
 
 
 import org.springframework.context.annotation.Bean;
@@ -15,7 +15,7 @@ public class CorsConfig {//요청의 종류, 정책을 정하는 파트
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 
-        CorsConfiguration config = new CorsConfiguration();// 쿠키 허요
+        CorsConfiguration config = new CorsConfiguration();// 쿠키 허용
 
         config.setAllowCredentials(true);//모든 출처를 허용
 

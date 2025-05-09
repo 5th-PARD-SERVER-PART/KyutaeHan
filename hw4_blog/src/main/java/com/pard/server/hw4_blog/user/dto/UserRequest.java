@@ -12,16 +12,13 @@ import java.util.List;
 public class UserRequest {
 
     @Getter
-//    @Builder
+    @Builder
     @NoArgsConstructor
     @AllArgsConstructor
     public static class UserCreateRequest {
-//        private Long id;
         private String name;
+        private String email;
         private List<BlogDto> blogs;
-        // private List<Likes> likes;
-
-
     }
 
 

@@ -54,4 +54,11 @@ public class BlogService {
         }
         blogRepo.delete(blog);
     }
+
+    public List<BlogResponse.BlogReadResponse> readAllBlogs() {
+        List<Blog> blogs = blogRepo.findAll();
+        return blogs.stream()
+                .map(BlogResponse.BlogReadResponse::from)
+                .toList();
+    }
 }

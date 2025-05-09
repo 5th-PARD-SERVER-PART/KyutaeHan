@@ -1,7 +1,10 @@
-package com.pard.server.seminar5.member.domain;
+package com.pard.server.hw4_blog.member.domain;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 
 @Getter

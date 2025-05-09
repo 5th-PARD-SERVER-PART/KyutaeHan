@@ -1,4 +1,4 @@
-package com.pard.server.seminar5.member.controller;
+package com.pard.server.hw4_blog.member.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

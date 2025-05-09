@@ -1,8 +1,9 @@
-package com.pard.server.seminar5.member.service;
+package com.pard.server.hw4_blog.member.service;
 
-import com.pard.server.seminar5.member.domain.Member;
-import com.pard.server.seminar5.member.domain.Role;
-import com.pard.server.seminar5.member.repository.MemberRepository;
+
+import com.pard.server.hw4_blog.member.domain.Member;
+import com.pard.server.hw4_blog.member.domain.Role;
+import com.pard.server.hw4_blog.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;

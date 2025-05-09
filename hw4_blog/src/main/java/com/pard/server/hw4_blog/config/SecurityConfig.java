@@ -28,7 +28,16 @@ public class SecurityConfig {
     public SecurityFilterChain FilterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable);  // CSRF 보호 비활성화
         http.addFilter(corsConfig.corsFilter());  // CORS 필터 추가
-        http.authorizeHttpRequests(au -> au.anyRequest().permitAll());  // 모든 요청 허용
+        
+        // 인가 규칙 설정
+        http.authorizeHttpRequests(auth -> auth
+            .requestMatchers("/loginForm", "/oauth2/**").permitAll()  // 로그인 관련 URL은 모두 허용
+            .requestMatchers("/blog/create").permitAll()  // 블로그 생성은 모두 허용
+            .requestMatchers("/blog/{blogId}/**").authenticated()  // 블로그 수정/삭제는 인증 필요
+            .requestMatchers("/user/**").authenticated()  // 사용자 관련 URL은 인증된 사용자만 접근 가능
+            .anyRequest().permitAll()  // 그 외 URL은 모두 허용
+        );
+
         http.oauth2Login(  // OAuth2 로그인 설정
                 oauth -> oauth
                 .loginPage("/loginForm")  // 로그인 페이지 경로

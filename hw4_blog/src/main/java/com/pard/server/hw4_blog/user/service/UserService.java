@@ -8,6 +8,7 @@ import com.pard.server.hw4_blog.user.dto.UserResponse;
 import com.pard.server.hw4_blog.user.entity.User;
 import com.pard.server.hw4_blog.user.repo.UserRepo;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,6 +20,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserService {
     private final UserRepo userRepo;
+    private final PasswordEncoder passwordEncoder;
 
     @Transactional
     public User createOrUpdateUser(String email, String name) {
@@ -90,5 +92,18 @@ public class UserService {
                         .blogs(BlogMapper.toDtoList(user.getBlog()))
                         .build())
                 .toList();
+    }
+
+    public void join(UserRequest.UserCreateRequest req) {
+        String encodedPassword = passwordEncoder.encode(req.getPassword());
+        User user = User.builder()
+                .name(req.getName())
+                .email(req.getEmail())
+                .password(encodedPassword)
+                .role(Role.USER)
+                .blog(new ArrayList<>())
+                .likes(new ArrayList<>())
+                .build();
+        userRepo.save(user);
     }
 }

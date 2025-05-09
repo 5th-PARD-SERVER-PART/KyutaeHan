@@ -3,7 +3,8 @@ package com.pard.server.hw4_blog.member.service;
 import com.pard.server.hw4_blog.member.domain.Member;
 import com.pard.server.hw4_blog.member.domain.Role;
 import com.pard.server.hw4_blog.member.repository.MemberRepository;
-import com.pard.server.hw4_blog.user.service.UserService;
+import com.pard.server.hw4_blog.user.entity.User;
+import com.pard.server.hw4_blog.user.repo.UserRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
@@ -12,12 +13,14 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+
 @Service
 @Slf4j
 @RequiredArgsConstructor
 public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
     private final MemberRepository memberRepository;
-    private final UserService userService;
+    private final UserRepo userRepo;
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest oAuth2UserRequest) throws OAuth2AuthenticationException {
@@ -40,8 +43,24 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
                                 .build()
                 ));
 
-        // User 생성 또는 업데이트
-        userService.createOrUpdateUser(email, name);
+        // User 생성 또는 업데이트 (UserService 대신 직접 구현)
+        userRepo.findByEmail(email).ifPresentOrElse(
+            user -> {
+                user.update(name);
+                userRepo.save(user);
+            },
+            () -> {
+                User user = User.builder()
+                        .email(email)
+                        .name(name)
+                        .password("소셜로그인") // 소셜 로그인은 비밀번호 필요 없음
+                        .role(Role.USER)
+                        .blog(new ArrayList<>())
+                        .likes(new ArrayList<>())
+                        .build();
+                userRepo.save(user);
+            }
+        );
 
         return oAuth2User;
     }

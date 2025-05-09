@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 /**
@@ -20,6 +22,11 @@ public class SecurityConfig {
     private final PrincipalOauth2UserService principalOauth2UserService;  // OAuth2 로그인 처리 서비스
     private final CorsConfig corsConfig;  // CORS 설정
 
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
+    }
+
     /**
      * Spring Security의 필터 체인을 설정
      * CSRF 보호, CORS 설정, 인증/인가 규칙 등을 정의
@@ -31,11 +38,18 @@ public class SecurityConfig {
         
         // 인가 규칙 설정
         http.authorizeHttpRequests(auth -> auth
-            .requestMatchers("/loginForm", "/oauth2/**").permitAll()  // 로그인 관련 URL은 모두 허용
-            .requestMatchers("/blog/create").permitAll()  // 블로그 생성은 모두 허용
-            .requestMatchers("/blog/{blogId}/**").authenticated()  // 블로그 수정/삭제는 인증 필요
+            .requestMatchers("/loginForm", "/joinForm", "/join", "/oauth2/**", "/user/join").permitAll()  // 로그인 및 회원가입 관련 URL은 모두 허용
+            .requestMatchers("/blog/**").authenticated()  // 블로그 관련 URL은 인증된 사용자만 접근 가능
             .requestMatchers("/user/**").authenticated()  // 사용자 관련 URL은 인증된 사용자만 접근 가능
             .anyRequest().permitAll()  // 그 외 URL은 모두 허용
+        );
+
+        http.formLogin(form -> form
+            .loginPage("/loginForm")
+            .loginProcessingUrl("/login")
+            .failureUrl("/loginForm?error")
+            .defaultSuccessUrl("/", true)
+            .permitAll()
         );
 
         http.oauth2Login(  // OAuth2 로그인 설정

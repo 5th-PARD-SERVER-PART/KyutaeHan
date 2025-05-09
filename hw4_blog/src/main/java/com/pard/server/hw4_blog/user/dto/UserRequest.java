@@ -6,18 +6,21 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 
 public class UserRequest {
 
     @Getter
+    @Setter
     @Builder
     @NoArgsConstructor
     @AllArgsConstructor
     public static class UserCreateRequest {
         private String name;
         private String email;
+        private String password;
         private List<BlogDto> blogs;
     }
 
@@ -29,12 +32,6 @@ public class UserRequest {
         private String filename;
     }
 
-    /*@Getter
-    @JsonInclude(JsonInclude.Include.NON_NULL)
-    @NoArgsConstructor @AllArgsConstructor
-    public static class UserCreateRequest {
-        private String name;
-        private List<Likes> Likes;
-    }*/
+
 
 }

@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class BlogMapper {
     public static BlogResponse.BlogReadResponse toDto(Blog blog) {
         return BlogResponse.BlogReadResponse.builder()
-                .id(blog.getId())
+                .blog_id(blog.getId())
                 .filename(blog.getFilename())
                 .writerName(blog.getUser().getName())
                 .writerId(blog.getUser().getId())

@@ -4,6 +4,8 @@ import com.pard.server.hw4_blog.user.dto.UserRequest;
 import com.pard.server.hw4_blog.user.dto.UserResponse;
 import com.pard.server.hw4_blog.user.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,20 +20,21 @@ public class UserController {
 
     @GetMapping("")
     @ResponseBody
-    public List<UserResponse.ReadUser> getAllUsers() {
-        return userService.readAllUsers();
+    public ResponseEntity<List<UserResponse.ReadUser>> getAllUsers() {
+        return ResponseEntity.ok(userService.readAllUsers());
     }
 
     @GetMapping("/{userId}")
     @ResponseBody
-    public UserResponse.ReadUser getUser(@PathVariable Long userId) {
-        return userService.readUser(userId);
+    public ResponseEntity<UserResponse.ReadUser> getUser(@PathVariable Long userId) {
+        return ResponseEntity.ok(userService.readUser(userId));
     }
 
     @PostMapping("")
     @ResponseBody
-    public void createUser(@RequestBody UserRequest.UserCreateRequest req) {
+    public ResponseEntity<Void> createUser(@RequestBody UserRequest.UserCreateRequest req) {
         userService.createUser(req);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @PostMapping("/join")
@@ -42,7 +45,8 @@ public class UserController {
 
     @DeleteMapping("/{userId}")
     @ResponseBody
-    public void deleteUser(@PathVariable Long userId) {
+    public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
         userService.deleteUser(userId);
+        return ResponseEntity.noContent().build();
     }
 }

@@ -37,5 +37,5 @@ public class User {
 
     public void update(String name) {
         this.name = name;
-    }
+    } //소셜 로그인 시 이름이 바뀌었을 경우 최신화
 }

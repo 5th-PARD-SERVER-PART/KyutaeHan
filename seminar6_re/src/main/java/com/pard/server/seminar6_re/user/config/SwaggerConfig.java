@@ -1,4 +1,4 @@
-package com.pard.server.seminar6_re.config;
+package com.pard.server.seminar6_re.user.config;
 
 
 import io.swagger.v3.oas.models.Components;

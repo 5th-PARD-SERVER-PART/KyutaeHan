@@ -1,4 +1,7 @@
 package com.pard.server.seminar6_re.user.repo;
 
-public class UserRepo {
+import com.pard.server.seminar6_re.user.entity.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepo extends JpaRepository<User,Long> {
 }

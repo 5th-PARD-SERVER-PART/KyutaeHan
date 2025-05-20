@@ -1,4 +1,4 @@
-package com.pard.server.seminar6.config;
+package com.pard.server.seminar4th.config;
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;

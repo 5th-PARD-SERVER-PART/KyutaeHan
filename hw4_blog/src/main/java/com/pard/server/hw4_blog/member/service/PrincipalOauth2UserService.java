@@ -43,7 +43,7 @@ public class PrincipalOauth2UserService extends DefaultOAuth2UserService {
                                 .build()
                 ));
 
-        // User 생성 또는 업데이트 (UserService 대신 직접 구현)
+        // User 생성 또는 업데이트 
         userRepo.findByEmail(email).ifPresentOrElse(
             user -> {
                 user.update(name);

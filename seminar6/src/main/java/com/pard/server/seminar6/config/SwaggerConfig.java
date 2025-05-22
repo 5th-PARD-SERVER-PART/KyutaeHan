@@ -1,12 +1,13 @@
-package com.pard.server.seminar4th.config;
+package com.pard.server.seminar6.config;
+
 
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.beans.factory.annotation.Value;
 import io.swagger.v3.oas.models.servers.Server;
+
 
 @Configuration
 public class SwaggerConfig {
@@ -21,11 +22,8 @@ public class SwaggerConfig {
 
     private Info apiInfo(){
         return new Info()
-                .title("Seminar 4")
-                .description("Seminar4 스웨거")
+                .title("CLBACK API")
+                .description("파트장은. 너희를 응원한다. 다들 포기하지 말고 열심히 하도록. 🫡")
                 .version("1.0.0");
     }
-
-    //http://localhost:8080/swagger-ui/index.html
-
 }

@@ -1,37 +1,34 @@
-package com.pard.server.seminar4th.user.entity;
+package com.pard.server.seminar6.user.entity;
 
-import com.pard.server.seminar4th.book.entity.Book;
-import com.pard.server.seminar4th.card.entity.Card;
+
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
-import java.util.List;
 
 @Entity
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-
+@Builder
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+    private int age;
+    private String part;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Book> book;
-
-
-    @OneToOne(mappedBy = "user")
-    private Card card;
-
-    public void assignCard(Card card) {
-        this.card = card;
+    public void updatePart(String part) {
+        this.part = part;
     }
-
-
-
-
+    public void updateName(String name) {
+        this.name = name;
+    }
+//    public void updateid(Long id) {
+//        this.id = id;
+//    }
+    public void updateAge(int age) {
+        this.age = age;
+    }
 }

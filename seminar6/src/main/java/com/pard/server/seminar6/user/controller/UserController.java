@@ -1,11 +1,15 @@
-package com.pard.server.seminar4th.user.controller;
+package com.pard.server.seminar6.user.controller;
 
-import com.pard.server.seminar4th.user.dto.UserRequest;
-import com.pard.server.seminar4th.user.dto.UserResponse;
-import com.pard.server.seminar4th.user.service.UserService;
-import com.pard.server.seminar4th.user.controller.UserController;
+
+import com.pard.server.seminar6.user.dto.UserDto;
+import com.pard.server.seminar6.user.entity.User;
+import com.pard.server.seminar6.user.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 
 @RestController
 @RequiredArgsConstructor
@@ -14,21 +18,33 @@ public class UserController {
 
     private final UserService userService;
 
-    @GetMapping("/{userId}")
-    public UserResponse.ReadUser getUser(@PathVariable Long userId) {
-        return userService.readUser(userId);
+
+    @GetMapping("")
+    public List<User> findAllByPart(@RequestParam String part) {
+        return userService.readUser(part);
     }
 
-    @PostMapping("")
-    public void createUser(@RequestBody UserRequest.UserCreateRequest req) {
-        userService.createUser(req);
-    }
 
-    @DeleteMapping("/{userId}")
-    public void deleteUser(@PathVariable Long userId) {
-        userService.deleteUser(userId);
-    }
+@PostMapping("")
+public ResponseEntity<Void> save(@RequestBody UserDto userDto) {
+    userService.save(userDto);
+    return ResponseEntity.ok().build();
+}
 
+@PatchMapping("/{userId}")
+public void update(@PathVariable Long userId, @RequestBody UserDto userDto){
+    userService.update(userId, userDto);
+}
+
+@DeleteMapping("")
+@ResponseBody
+public ResponseEntity<Void> deleteUser(@RequestParam Long userId) {
+    userService.deleteUser(userId);
+    return ResponseEntity.noContent().build();
+}
 
 
 }
+
+
+

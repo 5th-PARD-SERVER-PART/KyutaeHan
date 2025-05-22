@@ -2,6 +2,7 @@ package com.pard.hw3_crudmysql.laptop.controll;
 
 
 import com.pard.hw3_crudmysql.laptop.dto.LaptopDto;
+import com.pard.hw3_crudmysql.laptop.dto.LaptopRequestDto;
 import com.pard.hw3_crudmysql.laptop.service.LaptopService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -15,8 +16,8 @@ public class LaptopController {
     private final LaptopService laptopService;
 
     @PostMapping("")
-    public void save(@RequestBody LaptopDto laptopDto){
-        laptopService.save(laptopDto);
+    public void save(@RequestBody LaptopRequestDto laptopRequestDto) {
+        laptopService.save(laptopRequestDto);
     }
 
     @GetMapping("/{laptopId}")
@@ -26,30 +27,30 @@ public class LaptopController {
 
 
     @GetMapping("")
-    public List<LaptopDto> readAll(){
+    public List<LaptopResponseDto> readAll(){
         return laptopService.readAll();
     }
 
     @GetMapping("/releasedYear")
-    public List<LaptopDto> readByReleaseoYear(@RequestParam int releasedYear){
+    public List<LaptopResponseDto> readByReleaseoYear(@RequestParam int releasedYear){
         return laptopService.findByReleasedYear(releasedYear);
     }
 
-    @GetMapping("/{companyName}")
-    public List<LaptopDto> readByCompanyName(@PathVariable String companyName){
+    @GetMapping("/company/{companyName}")
+    public List<LaptopResponseDto> readByCompanyName(@PathVariable String companyName){
         return laptopService.findByCompanyName(companyName);
 
     }
 
-    @GetMapping("/{cpuName}")
-    public List<LaptopDto> readByCpuName(@PathVariable String cpuName){
+    @GetMapping("/cpu/{cpuName}")
+    public List<LaptopResponseDto> readByCpuName(@PathVariable String cpuName){
         return laptopService.findByCpuName(cpuName);
 
     }
 
     @PatchMapping("/{laptopId}")
-    public void update(@PathVariable Long laptopId, @RequestBody LaptopDto laptopDto){
-        laptopService.update(laptopId, laptopDto);
+    public void update(@PathVariable Long laptopId, @RequestBody LaptopRequestDto laptopRequestDto){
+        laptopService.update(laptopId, laptopRequestDto);
     }
 
     @DeleteMapping("/{laptopId}")

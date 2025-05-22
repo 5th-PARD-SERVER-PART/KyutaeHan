@@ -15,67 +15,91 @@ import java.util.List;
 public class LaptopService {
     private final LaptopRepository laptopRepository;
 
-    public void save(LaptopDto laptopDto){
+    public void save(LaptopRequestDto laptopRequestDto){
         Laptop laptop = Laptop.builder()
-                .laptopName(laptopDto.getLaptopName())
-                .releasedYear(laptopDto.getReleasedYear())
-                .cpuName(laptopDto.getCpuName())
-                .companyName(laptopDto.getCompanyName())
-                .otherDetails(laptopDto.getOtherDetails())
+                .laptopName(laptopRequestDto.getLaptopName())
+                .releasedYear(laptopRequestDto.getReleasedYear())
+                .cpuName(laptopRequestDto.getCpuName())
+                .companyName(laptopRequesttDto.getCompanyName())
+                .otherDetails(laptopRequestDto.getOtherDetails())
                 .build();
 
         laptopRepository.save(laptop);
     }
 
-    public LaptopDto read(Long laptopId){
-        Laptop laptop = laptopRepository.findById(laptopId).get();
-        return LaptopDto.builder()
-                .laptopName(laptop.getLaptopName())
-                .releasedYear(laptop.getReleasedYear())
-                .cpuName(laptop.getCpuName())
-                .companyName(laptop.getCompanyName())
-                .otherDetails(laptop.getOtherDetails())
-                .build();
+    public LaptopResponseDto read(Long laptopId){
+        Laptop laptop = laptopRepository.findById(laptopId)
+                .orElseThrow(() -> new IllegalArgumentException("Laptop not found"));
+        return toResponseDto(laptop);
 
     }
 
-    public List<LaptopDto> findByReleasedYear(int year){
-        List<Laptop> laptops = laptopRepository.findByReleasedYear(year);
-        List<LaptopDto> laptopDtos = laptops.stream().map(laptop ->
-                LaptopDto.builder()
-                        .laptopName(laptop.getLaptopName())
-                        .releasedYear(laptop.getReleasedYear())
-                        .cpuName(laptop.getCpuName())
-                        .companyName(laptop.getCompanyName())
-                        .otherDetails(laptop.getOtherDetails())
-                        .build()).toList();
-        return laptopDtos;
+    public List<LaptopResponseDto> readAll(){
+//        List<Laptop> laptops = laptopRepository.findAll();
+//        List<LaptopDto> laptopDtos = laptops.stream().map(laptop ->
+//                LaptopDto.builder()
+//                        .laptopName(laptop.getLaptopName())
+//                        .releasedYear(laptop.getReleasedYear())
+//                        .cpuName(laptop.getCpuName())
+//                        .companyName(laptop.getCompanyName())
+//                        .otherDetails(laptop.getOtherDetails())
+//                        .build()).toList();
+//        return laptopDtos;
+        return laptopRepository.findAll()
+                .stream()
+                .map(this::toResponseDto)
+                .collect(Collectors.toList());
     }
 
-    public List<LaptopDto> findByCompanyName(String companyName) {
-        List<Laptop> laptops = laptopRepository.findByCompanyName(companyName);
-        List<LaptopDto> laptopDtos = laptops.stream().map(laptop ->
-                LaptopDto.builder()
-                        .laptopName(laptop.getLaptopName())
-                        .releasedYear(laptop.getReleasedYear())
-                        .cpuName(laptop.getCpuName())
-                        .companyName(laptop.getCompanyName())
-                        .otherDetails(laptop.getOtherDetails())
-                        .build()).toList();
-        return laptopDtos;
+    public List<LaptopResponseDto> findByReleasedYear(int year){
+//        List<Laptop> laptops = laptopRepository.findByReleasedYear(year);
+//        List<LaptopDto> laptopDtos = laptops.stream().map(laptop ->
+//                LaptopDto.builder()
+//                        .laptopName(laptop.getLaptopName())
+//                        .releasedYear(laptop.getReleasedYear())
+//                        .cpuName(laptop.getCpuName())
+//                        .companyName(laptop.getCompanyName())
+//                        .otherDetails(laptop.getOtherDetails())
+//                        .build()).toList();
+//        return laptopDtos;
+        return laptopRepository.findByReleasedYear(year)
+                .stream()
+                .map(this::toResponseDto)
+                .collect(Collectors.toList());
     }
 
-    public List<LaptopDto> findByCpuName(String cpuName) {
-        List<Laptop> laptops = laptopRepository.findByCpuName(cpuName);
-        List<LaptopDto> laptopDtos = laptops.stream().map(laptop ->
-                LaptopDto.builder()
-                        .laptopName(laptop.getLaptopName())
-                        .releasedYear(laptop.getReleasedYear())
-                        .cpuName(laptop.getCpuName())
-                        .companyName(laptop.getCompanyName())
-                        .otherDetails(laptop.getOtherDetails())
-                        .build()).toList();
-        return laptopDtos;
+    public List<LaptopResponseDto> findByCompanyName(String companyName) {
+//        List<Laptop> laptops = laptopRepository.findByCompanyName(companyName);
+//        List<LaptopDto> laptopDtos = laptops.stream().map(laptop ->
+//                LaptopDto.builder()
+//                        .laptopName(laptop.getLaptopName())
+//                        .releasedYear(laptop.getReleasedYear())
+//                        .cpuName(laptop.getCpuName())
+//                        .companyName(laptop.getCompanyName())
+//                        .otherDetails(laptop.getOtherDetails())
+//                        .build()).toList();
+//        return laptopDtos;
+        return laptopRepository.findByCompanyName(companyName)
+                .stream()
+                .map(this::toResponseDto)
+                .collect(Collectors.toList());
+    }
+
+    public List<LaptopResponseDto> findByCpuName(String cpuName) {
+//        List<Laptop> laptops = laptopRepository.findByCpuName(cpuName);
+//        List<LaptopDto> laptopDtos = laptops.stream().map(laptop ->
+//                LaptopDto.builder()
+//                        .laptopName(laptop.getLaptopName())
+//                        .releasedYear(laptop.getReleasedYear())
+//                        .cpuName(laptop.getCpuName())
+//                        .companyName(laptop.getCompanyName())
+//                        .otherDetails(laptop.getOtherDetails())
+//                        .build()).toList();
+//        return laptopDtos;
+        return laptopRepository.findByCpuName(cpuName)
+                .stream()
+                .map(this::toResponseDto)
+                .collect(Collectors.toList());
     }
 
 //    public Long getLaptopNum(String laptopName){
@@ -83,31 +107,40 @@ public class LaptopService {
 //        return laptop.getLaptopId();
 //    }
 
-    public List<LaptopDto> readAll(){
-        List<Laptop> laptops = laptopRepository.findAll();
-        List<LaptopDto> laptopDtos = laptops.stream().map(laptop ->
-                LaptopDto.builder()
-                    .laptopName(laptop.getLaptopName())
-                    .releasedYear(laptop.getReleasedYear())
-                    .cpuName(laptop.getCpuName())
-                    .companyName(laptop.getCompanyName())
-                    .otherDetails(laptop.getOtherDetails())
-                    .build()).toList();
-        return laptopDtos;
-    }
+
 
     @Transactional
-    public void update(Long laptopId, LaptopDto laptopDto)
+    public void update(Long laptopId, LaptopRequestDto laptopRequestDto)
     {
-        Laptop laptop = laptopRepository.findById(laptopId).get();
-        laptop.updateOtherDetails(laptopDto.getOtherDetails());
-        laptopRepository.save(laptop);
+//        Laptop laptop = laptopRepository.findById(laptopId).get();
+//        laptop.updateOtherDetails(laptopRequestDto.getOtherDetails());
+//        laptopRepository.save(laptop);
+        Laptop laptop = laptopRepository.findById(laptopId)
+                .orElseThrow(() -> new IllegalArgumentException("해당 ID의 노트북이 없습니다: " + laptopId));
+
+        laptop.update(
+                laptopRequestDto.getLaptopName(),
+                laptopRequestDto.getReleasedYear(),
+                laptopRequestDto.getCpuName(),
+                laptopRequestDto.getOtherDetails()
+        );
     }
 
     public void delete(Long laptopId){
         laptopRepository.deleteById(laptopId);
     }
 
+    //공통 매핑 함수
+    private LaptopResponseDto toResponseDto(Laptop laptop){
+        return LaptopResponseDto.builder()
+                .id(laptop.getLaptopId())
+                .laptopName(laptop.getLaptopName())
+                .releasedYear(laptop.getReleasedYear())
+                .cpuName(laptop.getCpuName())
+                .companyName(laptop.getCompanyName())
+                .otherDetails(laptop.getOtherDetails())
+                .build();
+    }
 
 
 }
